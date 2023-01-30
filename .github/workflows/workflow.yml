@@ -39,3 +39,13 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  example_matrix:
+    needs: [ "build" ]
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-20.04 ]
+        version: [ 10, 12, 14 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: echo "Setting up version ${{ matrix.version}}"
