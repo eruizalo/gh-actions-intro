@@ -6,6 +6,14 @@ on:
   push:
     branches-ignore: [ main ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      action:
+        required: true
+        type: string
+        default: 'None'
+
 jobs:
   build:
     name: "my build"
@@ -49,3 +57,4 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - run: echo "Setting up version ${{ matrix.version}}"
+        if: ${{ matrix.os }} == "ubuntu-22.04"
