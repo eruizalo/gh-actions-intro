@@ -51,6 +51,7 @@ jobs:
   example_matrix:
     needs: [ "build" ]
     strategy:
+      max-parallel: 1
       matrix:
         os: [ ubuntu-22.04, ubuntu-20.04 ]
         version: [ 10, 12, 14 ]
